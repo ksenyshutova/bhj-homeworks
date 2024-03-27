@@ -9,3 +9,4 @@ element.onclick = function () {
         element.width = 200;
     }
 }
+
