@@ -17,12 +17,10 @@ class Game {
   }
 
   registerEvents() {
-    this.currentSymbol = (document.querySelector('.symbol_current')).textContent;
-    console.log(this.currentSymbol);
+    this.currentSymbol = document.querySelector('.symbol_current');
     document.addEventListener("keypress", (event) => {
       let keyName = event.key;
-      console.log(keyName);
-      if (this.currentSymbol.toLowerCase() === keyName.toLowerCase()) {
+      if (((this.currentSymbol).textContent).toLowerCase() === keyName.toLowerCase()) {
         this.success();
       } else {
         this.fail();
