@@ -15,6 +15,9 @@ fonts.forEach((el) => {
         if (fonts[2] === event.target) {
             book.classList.add('book_fs-big');
             book.classList.remove('book_fs-small');
+        } else {
+            book.classList.remove('book_fs-small');
+            book.classList.remove('book_fs-big');
         }
     });
 });
