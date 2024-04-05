@@ -8,15 +8,10 @@ fonts.forEach((el) => {
         }
         event.preventDefault();
         event.target.classList.add('font-size_active');
-        if (fonts[0] === event.target) {
-            book.classList.add('book_fs-small');
-            book.classList.remove('book_fs-big');
-        } else if (fonts[2] === event.target) {
-            book.classList.add('book_fs-big');
-            book.classList.remove('book_fs-small');
-        } else {
-            book.classList.remove('book_fs-small');
-            book.classList.remove('book_fs-big');
+        book.classList.remove('book_fs-small', 'book_fs-big');
+        const size = event.target.dataset.size;
+        if (size) {
+            book.classList.add(`book_fs-${size}`);
         }
     });
 });
