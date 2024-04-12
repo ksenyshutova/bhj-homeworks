@@ -5,15 +5,17 @@ activeElement.classList.add('tooltip');
 
 tips.forEach((el) => {
     el.addEventListener('click', event => {
-        event.preventDefault();
-        activeElement.textContent = el.title;
-        const top = el.getBoundingClientRect().top;
-        const bottom = el.getBoundingClientRect().bottom;
-        if ((top < window.innerHeight && top > 0) || (bottom > 0 && bottom < window.innerHeight)) {
-            activeElement.classList.add('tooltip_active');
-        } else {
+        if (activeElement.classList.contains('tooltip_active')) {
             activeElement.classList.remove('tooltip_active');
+        } else {
+            event.preventDefault();
+            activeElement.textContent = el.title;
+            const top = el.getBoundingClientRect().top;
+            const left = el.getBoundingClientRect().left;
+            activeElement.classList.add('tooltip_active');
+            el.insertAdjacentElement('afterend', activeElement);
+            activeElement.style.left = left + 5 + 'px';
+            activeElement.style.top = top + 20 + 'px';
         }
-        el.appendChild(activeElement);
     });
 });

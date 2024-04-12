@@ -3,7 +3,7 @@ let minus = document.querySelectorAll('.product__quantity-control_dec');
 let plus = document.querySelectorAll('.product__quantity-control_inc');
 let quantity = Array.from(document.querySelectorAll('.product__quantity-value'));
 let basket = document.querySelectorAll('.product__add');
-let pictures = document.querySelectorAll('.product__image');
+let pictures = Array.from(document.querySelectorAll('.product__image'));
 let items = Array.from(document.querySelectorAll('.product'));
 
 plus.forEach((el, index) => {
@@ -27,21 +27,19 @@ minus.forEach((el, index) => {
 basket.forEach((el, index) => {
     el.addEventListener('click', event => {
         event.preventDefault();
-        let basketId = document.createElement('div');
-        if (el.dataset.id === basketId.dataset.id) {
-            basketId.classList.add('cart__product');
-            basketId.dataset.id = items[index].dataset.id;
-            products.appendChild(basketId);
-            let image = document.createElement('img');
-            image.classList.add('cart__product-image');
-            image.src = pictures[index].src
-            basketId.appendChild(image);
-            let quantityProduct = document.createElement('div');
-            quantityProduct.classList.add('cart__product-count');
-            quantityProduct.textContent = quantity[index].textContent;
-            basketId.appendChild(quantityProduct);
-        };
+        let cards = Array.from(document.querySelectorAll('.cart__product'));
+        let total = Array.from(document.querySelectorAll('.cart__product-count'));
+        const productInCard = cards.find((item) =>
+            item.dataset.id === items[index].dataset.id);
+        if (productInCard) {
+            total[index].textContent = Number(total[index].textContent) + Number(quantity[index].textContent);
+        } else {
+            products.insertAdjacentHTML('beforeEnd',
+                `<div class="cart__product" data-id=${items[index].getAttribute('data-id')}>
+        <img class="cart__product-image" src=${pictures[index].getAttribute('src')}>
+        <div class="cart__product-count">${quantity[index].textContent}</div>
+    </div>`)
+        }
     });
 });
-
 
