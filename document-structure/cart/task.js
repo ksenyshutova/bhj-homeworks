@@ -42,4 +42,3 @@ basket.forEach((el, index) => {
         }
     });
 });
-
