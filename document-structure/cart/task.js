@@ -28,11 +28,9 @@ basket.forEach((el, index) => {
     el.addEventListener('click', event => {
         event.preventDefault();
         let cards = Array.from(document.querySelectorAll('.cart__product'));
-        let total = Array.from(document.querySelectorAll('.cart__product-count'));
-        const productInCard = cards.find((item) =>
-            item.dataset.id === items[index].dataset.id);
+        const productInCard = cards.find((item) => items[index].dataset.id === item.dataset.id);
         if (productInCard) {
-            total[index].textContent = Number(total[index].textContent) + Number(quantity[index].textContent);
+            productInCard.lastElementChild.innerText = Number(productInCard.lastElementChild.textContent) + Number(quantity[index].textContent);
         } else {
             products.insertAdjacentHTML('beforeEnd',
                 `<div class="cart__product" data-id=${items[index].getAttribute('data-id')}>
