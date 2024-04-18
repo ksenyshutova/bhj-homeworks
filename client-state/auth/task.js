@@ -2,6 +2,7 @@ const signin = document.querySelector('.signin');
 const btn = document.getElementById('signin__btn');
 const welcome = document.getElementById('welcome');
 const form = document.getElementById('signin__form');
+const login = document.getElementsByName('login');
 
 form.addEventListener('submit', event => {
     event.preventDefault();
@@ -13,6 +14,9 @@ form.addEventListener('submit', event => {
                 welcome.classList.add('welcome_active');
             } else {
                 alert('Неверный логин/пароль');
+                const name = login.textContent;
+                localStorage.setItem('name', name);
+                
             }
         };
     });
